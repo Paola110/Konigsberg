@@ -6,7 +6,7 @@ Aplicación Streamlit de Python para analizar grafos (teoría de grafos)
 
 Crear, editar y analizar grafos en 3D desde el navegador. Permite al usuario:
 
-- Crear y etiquetar de nodos y aristas 3D (colores y texturas)
+- Crear y etiquetar nodos y aristas 3D (colores y texturas)
 - Generar aristas con flechas para grafos dirigidos
 - Calcular ruta más corta y resaltado en grafos ponderados
 
