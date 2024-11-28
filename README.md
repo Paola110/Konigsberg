@@ -1,5 +1,8 @@
 # 💠 **Konigsberg**
 
+- [Español](#-konigsberg)
+- [English](#-konigsberg-1)
+
 Aplicación Streamlit de Python para analizar grafos (teoría de grafos)
 
 ## 🎯 Objetivo
