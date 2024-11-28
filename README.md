@@ -1,4 +1,4 @@
-# 💠 **Konigsberg** 
+# 💠 **Konigsberg**
 
 Aplicación Streamlit de Python para analizar grafos (teoría de grafos)
 
