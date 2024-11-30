@@ -17,6 +17,7 @@ import time  # time.sleep(1)
 import streamlit as st
 import numpy as np
 import pandas as pd
+import pathlib
 
 from main_konigsberg import menu
 # ------------------------- Variables -------------------------
@@ -32,13 +33,28 @@ st.set_page_config(
 
 menu()
 
+# ---------------- Configuracion CSS --------------------------
+
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read()}</style>")
+
+css_path = pathlib.Path("assets/style.css")
+load_css(css_path)
+
 # --------------------------- Code ---------------------------
 
-st.title("Enlaces")
+st.markdown("<div class='titulo'><h1 class='enlaces'>Enlaces.</h1></div>", unsafe_allow_html=True)
+
+st.divider()
 
 st.markdown(
     """
-    ## Enlaces de interes para el proyecto
-    Enlace a "Nombre/Funcion" : [Link]
+    ### :violet[:material/link:] Github
+    https://github.com/Paola110/Konigsberg.git
     """
 )
+
+st.divider()
+
+st.caption("Derechos reservados de uso para el Equipo 1")
