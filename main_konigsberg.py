@@ -17,6 +17,7 @@ import time  # time.sleep(1)
 import streamlit as st
 import numpy as np
 import pandas as pd
+import pathlib
 # ------------------------- Variables -------------------------
 # Time
 
@@ -26,73 +27,106 @@ st.set_page_config(
     page_title="Konigsberg",
     page_icon="🕸️",
     layout="wide", 
-    initial_sidebar_state="auto"
+    initial_sidebar_state= "collapsed"
 )
 
+# -------------------- Configuracion CSS -----------------------
 
-# ---------------------- Menu desplegable ---------------------
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read()}</style>")
+
+css_path = pathlib.Path("assets/style.css")
+load_css(css_path)
+
+# ---------------------- Menu desplegable ----------------------
 
 def menu():
-    st.sidebar.page_link("main_konigsberg.py", label="Pagina inicial", icon="🕸️")
+    st.sidebar.page_link("main_konigsberg.py", label="Pagina principal", icon="🕸️")
     st.sidebar.page_link("pages/Creditos_menu.py", label="Creditos", icon="🗒️")
     st.sidebar.page_link("pages/Enlaces_menu.py", label="Enlaces", icon="🔗")
 
 menu()
 
-# --------------------------- Code ---------------------------
+# --------------------------- Code -----------------------------
 
-st.title("Konigsberg - :blue[_Grafos_]")
+st.markdown("<div class='titulo'><h1 class='titulo'>Manipulador de grafos.</h1></div>", unsafe_allow_html=True)
 
-st.subheader("¿Cómo se usa?", divider = "gray")
-
-st.markdown(
-    """
-    A la izquierda arriba al presionar la flecha se abrira un menu desplegable con dos opciones, enlaces pertinentes al codigo y los creditos donde se podran ver los roles de cada uno de los miembros del equipo. 
-    
-    Debajo de este apartado se encontraran dos botones, "Crear" donde se podra crear e interactuar con un grafo, y "Cargar" donde se podra abrir un grafo ya creado y guardado para poder interactuar con el.
-    """
-)
+st.markdown("<div class='subtitulo'><h5>Proyecto final de Estructuras Avanzadas</h5></div>", unsafe_allow_html=True)
 
 st.divider()
 
-c1, c2 = st.columns(2)
+st.markdown("Comienza eligiendo una de las siguientes opciones:")
 
-with c1:
-    Crear = st.button('Crear grafo', use_container_width=True, type="primary")
+c1, c2, c3, c4 = st.columns([0.10,0.40,0.40,0.10])
+
 with c2:
-    Cargar = st.button('Cargar grafo', use_container_width=True, type="secondary")
+    st.image(f"./static/graph_new.png", use_container_width=True)
+    Crear = st.button('Crear grafo', use_container_width=True, icon=":material/note_add:", key="btn_crear")
+with c3:
+    st.image(f"./static/graph_load.png", use_container_width=True)
+    Cargar = st.button('Cargar grafo', use_container_width=True, icon=":material/file_open:", type="secondary", key="btn_cargar")
 
 if Crear:
-    st.write('Presionaste el boton')
+    st.write('Presionaste el boton Crear')
 
 if Cargar:
-    st.write('Presionaste el boton')
+    st.write('Presionaste el boton Cargar')
 
-st.subheader("Los grafos y su historia", divider = "gray")
+st.write("")
+
+st.markdown("Para más información, revisa la sección :blue[**¿Cómo se usa?**] debajo. Adicionalmente se encuentra la seccion :violet[**Los grafos y su historia**].")
+
+st.divider()
+
+st.subheader("¿Cómo se usa?", divider= "blue")
+
+st.markdown(
+    """
+    El proyecto cuenta con las opciones de :blue[**Crear**] o :blue[**Cargar**] un grafo.  
+    * La opción de :blue[:material/note_add: **Crear grafo**] inicializa el manipulador de grafos con un espacio vacío.  
+    * La opción de :blue[:material/file_open: **Cargar grafo**] necesita de un archivo existente para inicializarlo.    
+    
+    Funciones del manipulador de grafos:  
+    1. Guardar...  
+    2. Crear nodo...   
+    3. Recorrido...  
+    4. ...  
+    
+        
+    Presiona :material/chevron_right: en la esquina superior izquierda para ver los :blue[🗒️**Créditos**] y los :blue[🔗**Enlaces**] al código fuente del proyecto.
+    """
+)
+
+st.subheader("Los grafos y su historia", divider = "violet")
 
 c1, c2 = st.columns(2)
 
 with c1:
     st.markdown(
         """
-        Un grafo es un conjunto de objetos llamados :orange[_vértices o nodos_] unidos por enlaces llamados :orange[_aristas o arcos_], que permiten representar relaciones binarias entre elementos de un conjunto.
-
-        Prácticamente cualquier problema puede representarse mediante un grafo, y su estudio trasciende a las diversas áreas de las ciencias exactas y las ciencias sociales.        
-
-        Ademas debemos mencionar que existen tres tipos de grafos en cuanto a su direccionalidad, los grafos :orange[_dirigidos_], los grafos :orange[_no dirigidos_] y los grafos :orange[_mixtos_].
+        Un grafo es un conjunto de objetos llamados :violet[**vértices o nodos**] unidos por enlaces llamados :violet[**aristas o arcos**], que permiten representar relaciones binarias entre elementos de un conjunto.
+        Ademas debemos mencionar que existen tres tipos de grafos en cuanto a su direccionalidad, los grafos :violet[**dirigidos**], los grafos :violet[**no dirigidos**] y los grafos :violet[**mixtos**].  
+        
+        En cuanto a su historia, la teoría de grafos se remonta al siglo XVIII con el problema de los puentes de :violet[_Königsberg_], el cual consistía en encontrar un camino que recorriera los siete puentes del río Pregel, de modo que se recorrieran todos los puentes pasando una sola vez por cada uno de ellos.  
+        El término grafo proviene de la expresión inglesa :violet[_graphic notation_] («notación gráfica»), usada por primera vez por Edward Frankland y posteriormente adoptada por Alexander Crum Brown en 1884 y que hacía referencia a la representación gráfica de los enlaces entre los átomos de una molécula.  
+          
+        :violet[**Prácticamente cualquier problema puede representarse mediante un grafo**], y su estudio trasciende a las diversas áreas de las ciencias exactas y las ciencias sociales.  
         """
     )
 
-with c2:
-    with st.container(height=250):
-        st.markdown("Grafo")
+html_code = '''
+    <div class='cardborder'>
+        <div class='container'>
+            <h5>Problema de Königsberg representado por un grafo</h5>
+            <img class="arrow" src="./app/static/graph_bridges.png"></div>
+        </div>
+    </div>
+'''
 
-st.markdown(
-    """    
-    En cuanto a su historia, la teoría de grafos se remonta al siglo XVIII con el problema de los puentes de :orange[_Königsberg_], el cual consistía en encontrar un camino que recorriera los siete puentes del río Pregel, de modo que se recorrieran todos los puentes pasando una sola vez por cada uno de ellos. El término grafo, proviene de la expresión inglesa graphic notation («notación gráfica»), usada por primera vez por Edward Frankland y posteriormente adoptada por Alexander Crum Brown en 1884 y que hacía referencia a la representación gráfica de los enlaces entre los átomos de una molécula.
-    """
-)
+with c2:
+    st.markdown(html_code, unsafe_allow_html=True)
 
 st.divider()
 
-st.caption("Derechos reservados de uso para el equipo 1")
+st.caption("Derechos reservados de uso para el Equipo 1")
