@@ -1,0 +1,83 @@
+# +----------------------------------------------------------------------------+
+# | Konigsberg v1.0.0
+# +----------------------------------------------------------------------------+
+# | Authors:
+# | Martín Isaí Nuñez  <>
+# | Vanessa Reteguín   <vanessa@reteguin.com>
+# | Released under the MIT license
+# +----------------------------------------------------------------------------+
+# | First release: November 29th, 2024
+# | Last update..: November 30th, 2024
+# | WhatIs.......: Crear_grafo.py - Konigsberg
+# +----------------------------------------------------------------------------+
+
+# Run: streamlit run /Users/vanessa/VS_Code/Python/main_konigsberg.py                                   
+
+# ------------ Resources / Documentation involved -------------
+# Streamlit API reference: https://docs.streamlit.io/develop/api-reference
+
+# ------------------------- Libraries -------------------------
+import time  # time.sleep(1)
+import streamlit as st
+import numpy as np
+import pandas as pd
+import pathlib
+
+import plotly.graph_objects as pl # Grid 3D para grafo
+
+from main_konigsberg import menu
+# ------------------------- Variables -------------------------
+graphGridHeight = 800
+
+# ---------------- Configuracion de la pagina -----------------
+
+st.set_page_config(
+    page_title="Crar grafo",
+    page_icon="✏️",
+    layout="wide", 
+    initial_sidebar_state="auto"
+)
+
+menu()
+
+# ---------------- Configuracion CSS --------------------------
+
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read()}</style>")
+
+css_path = pathlib.Path("assets/style.css")
+load_css(css_path)
+
+# --------------------------- Code ---------------------------
+
+st.markdown("<div class='titulo'><h1 class='enlaces'>Crear grafo</h1></div>", unsafe_allow_html=True)
+
+st.divider()
+
+fig = pl.Figure()
+fig.update_layout(height=graphGridHeight)
+
+fig.update_layout(scene=dict(
+    xaxis_title='X AXIS',
+    yaxis_title='Y AXIS',
+    zaxis_title='Z AXIS'
+))
+
+valor_x = st.sidebar.slider("Mover en X", min_value=-10, max_value=10, value=0)
+valor_y = st.sidebar.slider("Mover en Y", min_value=-10, max_value=10, value=0)
+valor_z = st.sidebar.slider("Mover en Z", min_value=-10, max_value=10, value=0)
+
+fig.add_trace(pl.Scatter3d(x=[valor_x], y=[valor_y], z=[valor_z], mode='markers', marker=dict(size=5, color='red')))
+
+fig.add_trace(pl.Scatter3d(x=[1], y=[1], z=[1], mode='markers', marker=dict(size=10, color='blue'), hovertext="Aguacate", hoverinfo="text"))
+fig.add_trace(pl.Scatter3d(x=[2], y=[2], z=[2], mode='markers', marker=dict(size=10, color='blue')))
+
+fig.add_trace(pl.Scatter3d(x=[1,2], y=[1,2], z=[1,2], mode='lines', marker=dict(size=10, color='purple'), hovertext="Arista", hoverinfo="text", line=dict(width=10)))
+
+st.plotly_chart(fig)
+
+
+st.divider()
+
+st.caption("Derechos reservados de uso para el Equipo 1")
