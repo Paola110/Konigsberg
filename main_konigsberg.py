@@ -43,6 +43,7 @@ load_css(css_path)
 
 def menu():
     st.sidebar.page_link("main_konigsberg.py", label="Pagina principal", icon="🕸️")
+    st.sidebar.page_link("pages/Crear_grafo.py", label="Crear grafo", icon="✏️")
     st.sidebar.page_link("pages/Creditos_menu.py", label="Creditos", icon="🗒️")
     st.sidebar.page_link("pages/Enlaces_menu.py", label="Enlaces", icon="🔗")
 
