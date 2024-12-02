@@ -7,7 +7,7 @@
 # | Released under the MIT license
 # +----------------------------------------------------------------------------+
 # | First release: November 29th, 2024
-# | Last update..: December 1st, 2024
+# | Last update..: December 2nd, 2024
 # | WhatIs.......: Crear_grafo.py - Konigsberg
 # +----------------------------------------------------------------------------+
 
@@ -16,16 +16,21 @@
 # ------------ Resources / Documentation involved -------------
 # Streamlit API reference: https://docs.streamlit.io/develop/api-reference
 
+# Python Figure Reference: scatter3d Traces: https://plotly.com/python/reference/scatter3d/
+
 # ------------------------- Libraries -------------------------
 import streamlit as st
 import plotly.graph_objects as pl
 import os
 
-# directorio de imágenes
-image_dir = 'images'
+# ------------------------- Variables -------------------------
+graphGridHeight = 800
+image_dir = 'images' # directorio de imágenes
+
+# --------------------------- Code ---------------------------
 
 # campo de entrada para el título del gráfico
-graph_title = st.text_input("Título del Gráfico", "Inserte nombre de grafo aquí")
+graph_title = st.text_input("Título del Gráfo", "Inserte nombre de grafo aquí")
 
 st.title(graph_title)
 
@@ -49,6 +54,7 @@ else:
         st.session_state['mostrar_formulario']['save_node'] = False
 
 fig = pl.Figure()
+fig.update_layout(height=graphGridHeight)
 
 fig.update_layout(scene=dict(
     xaxis_title='X AXIS',
@@ -87,33 +93,36 @@ if st.session_state['mostrar_formulario']['add_node']:
         with col_x_text:
             node_x_text = st.text_input("Posición en X", value="0")
         with col_x_slider:
-            node_x_slider = st.slider(" ", min_value=-10, max_value=10, value=int(node_x_text), key='slider_node_x')
+            node_x_slider = st.slider("", min_value=-10, max_value=10, value=int(node_x_text), key='slider_node_x')
 
         col_y_text, col_y_slider = st.columns([1, 3])
         with col_y_text:
             node_y_text = st.text_input("Posición en Y", value="0")
         with col_y_slider:
-            node_y_slider = st.slider(" ", min_value=-10, max_value=10, value=int(node_y_text), key='slider_node_y')
+            node_y_slider = st.slider("", min_value=-10, max_value=10, value=int(node_y_text), key='slider_node_y')
 
         col_z_text, col_z_slider = st.columns([1, 3])
         with col_z_text:
             node_z_text = st.text_input("Posición en Z", value="0")
         with col_z_slider:
-            node_z_slider = st.slider(" ", min_value=-10, max_value=10, value=int(node_z_text), key='slider_node_z')
+            node_z_slider = st.slider("", min_value=-10, max_value=10, value=int(node_z_text), key='slider_node_z')
 
         submit_node = st.form_submit_button("Agregar Nodo")
 
         if submit_node:
-            node_x = node_x_slider if st.session_state.slider_node_x != int(node_x_text) else int(node_x_text)
-            node_y = node_y_slider if st.session_state.slider_node_y != int(node_y_text) else int(node_y_text)
-            node_z = node_z_slider if st.session_state.slider_node_z != int(node_z_text) else int(node_z_text)
+            if node_name == "":
+                st.warning('Agrege nombre para nuevo nodo', icon="⚠️")
+            else:
+                node_x = node_x_slider if st.session_state.slider_node_x != int(node_x_text) else int(node_x_text)
+                node_y = node_y_slider if st.session_state.slider_node_y != int(node_y_text) else int(node_y_text)
+                node_z = node_z_slider if st.session_state.slider_node_z != int(node_z_text) else int(node_z_text)
 
-            st.session_state['nodos'].append({
-                "name": node_name,
-                "x": node_x,
-                "y": node_y,
-                "z": node_z
-            })
+                st.session_state['nodos'].append({
+                    "name": node_name,
+                    "x": node_x,
+                    "y": node_y,
+                    "z": node_z
+                })
 
 elif st.session_state['mostrar_formulario']['move_node'] and len(st.session_state['nodos']) > 0:
     with st.form(key='move_node_form'):
