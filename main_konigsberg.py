@@ -2,10 +2,12 @@
 # | Konigsberg v1.0.0
 # +----------------------------------------------------------------------------+
 # | Authors:
-# |
+# | Alan Torres      <>
+# | Paola Osorio     <> 
+# | Vanessa Reteguín <vanessa@reteguin.com>
 # +----------------------------------------------------------------------------+
 # | First release: November 28th, 2024
-# | Last update.: November 28th, 2024
+# | Last update..: December 2nd, 2024
 # | WhatIs.......: Konigsberg - Main
 # +----------------------------------------------------------------------------+
 
@@ -53,7 +55,7 @@ menu()
 
 st.markdown("<div class='titulo'><h1 class='titulo'>Manipulador de grafos.</h1></div>", unsafe_allow_html=True)
 
-st.markdown("<div class='subtitulo'><h5>Proyecto final de Estructuras Avanzadas</h5></div>", unsafe_allow_html=True)
+st.markdown("<div class='subtitulo'><h5>Proyecto final de Estructuras Computacionales Avanzadas</h5></div>", unsafe_allow_html=True)
 
 st.divider()
 
@@ -116,17 +118,20 @@ with c1:
         """
     )
 
-html_code = '''
-    <div class='cardborder'>
-        <div class='container'>
-            <h5>Problema de Königsberg representado por un grafo</h5>
-            <img class="arrow" src="./app/static/graph_bridges.png"></div>
-        </div>
-    </div>
-'''
 
 with c2:
-    st.markdown(html_code, unsafe_allow_html=True)
+    cardUpperPart = '''
+        <div class='cardborder'>
+            <div class='container'>
+                <h5 style="padding-bottom:0px;">Problema de Königsberg representado por un grafo</h5>
+            </div>
+        </div>
+    '''
+    # Favor de no mover el padding ni intentar insertar imagen en contenedor
+    # (Streamlit maneja que las imágenes lleguen al navegador y por eso nunca va a llegar desde un <img> tag)
+
+    st.markdown(cardUpperPart, unsafe_allow_html=True)
+    st.image(f"static/graph_bridges.png", use_container_width=True)
 
 st.divider()
 
