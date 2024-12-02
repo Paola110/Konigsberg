@@ -7,7 +7,7 @@
 # | Released under the MIT license
 # +----------------------------------------------------------------------------+
 # | First release: November 29th, 2024
-# | Last update..: Dicember 1st, 2024
+# | Last update..: December 1st, 2024
 # | WhatIs.......: Crear_grafo.py - Konigsberg
 # +----------------------------------------------------------------------------+
 
