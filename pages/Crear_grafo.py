@@ -25,7 +25,7 @@ import os
 
 # ------------------------- Variables -------------------------
 graphGridHeight = 800
-image_dir = 'images' # directorio de imágenes
+image_dir = 'static' # directorio de imágenes
 
 # --------------------------- Code ---------------------------
 
