@@ -61,6 +61,10 @@ st.divider()
 
 st.markdown("Comienza eligiendo una de las siguientes opciones:")
 
+# Verificar si el estado de navegación está configurado
+if "navigate_to" not in st.session_state:
+    st.session_state["navigate_to"] = None
+
 c1, c2, c3, c4 = st.columns([0.10,0.40,0.40,0.10])
 
 with c2:
@@ -86,8 +90,8 @@ st.subheader("¿Cómo se usa?", divider= "blue")
 
 st.markdown(
     """
-    El proyecto cuenta con las opciones de :blue[**Crear**] o :blue[**Cargar**] un grafo.  
-    * La opción de :blue[:material/note_add: **Crear grafo**] inicializa el manipulador de grafos con un espacio vacío.  
+    El proyecto cuenta con las opciones de [**Crear**](Crear_grafo) o :blue[**Cargar**] un grafo.  
+    * La opción de [:material/note_add: **Crear grafo**](Crear_grafo) inicializa el manipulador de grafos con un espacio vacío.  
     * La opción de :blue[:material/file_open: **Cargar grafo**] necesita de un archivo existente para inicializarlo.    
     
     Funciones del manipulador de grafos:  
@@ -97,7 +101,7 @@ st.markdown(
     4. ...  
     
         
-    Presiona :material/chevron_right: en la esquina superior izquierda para ver los :blue[🗒️**Créditos**] y los :blue[🔗**Enlaces**] al código fuente del proyecto.
+    Presiona :material/chevron_right: en la esquina superior izquierda para ver los [🗒️**Créditos**](Creditos_menu) y los [🔗**Enlaces**](Enlaces_menu) al código fuente del proyecto.
     """
 )
 
