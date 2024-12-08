@@ -84,6 +84,14 @@ mostrar_boton(cols2[0], "Personalizar", 'p_nodo.jpg', 'customize', 'boton_person
 mostrar_boton(cols2[1], "Cargar", 'c_grafo.jpg', 'load_node', 'boton_cargar')
 mostrar_boton(cols2[2], "Guardar", 'g_graph.jpg', 'save_node', 'boton_guardar')
 
+# Función para verificar si una arista ya existe
+def arista_ya_existe(node1, node2):
+    for arista in st.session_state['aristas']:
+        if (arista["node1"]["name"] == node1 and arista["node2"]["name"] == node2) or \
+           (arista["node1"]["name"] == node2 and arista["node2"]["name"] == node1):
+            return True
+    return False
+    
 # Mostrar el formulario correspondiente segun la herramienta seleccionada
 if st.session_state['mostrar_formulario']['add_node']:
     with st.form(key='add_node_form'):
@@ -173,18 +181,28 @@ elif st.session_state['mostrar_formulario']['add_edge'] and len(st.session_state
         submit_edge = st.form_submit_button("Agregar Arista")
 
         if submit_edge:
-            nodo1_data = next(nodo for nodo in st.session_state['nodos'] if nodo["name"] == node1)
-            nodo2_data = next(nodo for nodo in st.session_state['nodos'] if nodo["name"] == node2)
-            st.session_state['aristas'].append({
-                "node1": nodo1_data,
-                "node2": nodo2_data,
-                "weight": edge_weight
-            })
+            if arista_ya_existe(node1, node2):
+                st.warning('La arista entre estos nodos ya existe', icon="⚠️")
+            else:
+                nodo1_data = next(nodo for nodo in st.session_state['nodos'] if nodo["name"] == node1)
+                nodo2_data = next(nodo for nodo in st.session_state['nodos'] if nodo["name"] == node2)
+                st.session_state['aristas'].append({
+                    "node1": nodo1_data,
+                    "node2": nodo2_data,
+                    "weight": edge_weight
+                })
+                st.success(f"Arista añadida: {node1} ↔ {node2} con peso {edge_weight}")
+
 
         # Añadir boton de eliminación de arista
         eliminar_arista = st.form_submit_button("Eliminar Arista")
         if eliminar_arista:
-            st.session_state['aristas'] = [arista for arista in st.session_state['aristas'] if not ((arista["node1"]["name"] == node1 and arista["node2"]["name"] == node2) or (arista["node1"]["name"] == node2 and arista["node2"]["name"] == node1))]
+            st.session_state['aristas'] = [
+                arista for arista in st.session_state['aristas']
+                if not ((arista["node1"]["name"] == node1 and arista["node2"]["name"] == node2) or
+                        (arista["node1"]["name"] == node2 and arista["node2"]["name"] == node1))
+            ]
+            st.success(f"Arista eliminada entre {node1} y {node2}")
 
 elif st.session_state['mostrar_formulario']['customize']:
     with st.form(key='customize_form'):
