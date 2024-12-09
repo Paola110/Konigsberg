@@ -29,6 +29,15 @@ image_dir = 'static' # directorio de imágenes
 
 # --------------------------- Code ---------------------------
 
+# ---------------------- Menu desplegable ----------------------
+
+def menu():
+    st.sidebar.page_link("main_konigsberg.py", label="Pagina principal", icon="🕸")
+    st.sidebar.page_link("pages/Crear_grafo.py", label="Crear grafo", icon="✏")
+    st.sidebar.page_link("pages/Creditos_menu.py", label="Creditos", icon="🗒")
+    st.sidebar.page_link("pages/Enlaces_menu.py", label="Enlaces", icon="🔗")
+menu()
+
 # campo de entrada para el título del gráfico
 graph_title = st.text_input("Título del Gráfo", "Inserte nombre de grafo aquí")
 
