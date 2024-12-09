@@ -247,7 +247,8 @@ for arista in st.session_state['aristas']:
             color=st.session_state.get('customization', {}).get("line_color", 'purple')
         ),
         hovertext="Arista",
-        hoverinfo="text"
+        hoverinfo="text",
+        hovertemplate = f"Arista: {arista['weight']}"
     ))
 
 st.plotly_chart(fig)
