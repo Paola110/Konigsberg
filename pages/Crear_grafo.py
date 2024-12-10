@@ -22,10 +22,11 @@
 import streamlit as st
 import plotly.graph_objects as pl
 import os
+import json
 
 # ------------------------- Variables -------------------------
 graphGridHeight = 800
-image_dir = 'static' # directorio de imágenes
+image_dir = 'images' # directorio de imágenes
 
 # --------------------------- Code ---------------------------
 
@@ -75,7 +76,7 @@ fig.update_layout(scene=dict(
 cols1 = st.columns([1, 1, 1])
 cols2 = st.columns([1, 1, 1])
 
-# Funcionnpara mostrar botones con imágenes y texto
+# Funcion para mostrar botones con imágenes y texto
 def mostrar_boton(contenedor, titulo, imagen, estado, clave):
     if contenedor.button(titulo, key=clave):
         for k in st.session_state['mostrar_formulario']:
@@ -128,7 +129,7 @@ if st.session_state['mostrar_formulario']['add_node']:
 
         if submit_node:
             if node_name == "":
-                st.warning('Agrege nombre para nuevo nodo', icon="⚠️")
+                st.warning('Agrege nombre para nuevo nodo', icon="⚠")
             else:
                 node_x = node_x_slider if st.session_state.slider_node_x != int(node_x_text) else int(node_x_text)
                 node_y = node_y_slider if st.session_state.slider_node_y != int(node_y_text) else int(node_y_text)
@@ -228,6 +229,27 @@ elif st.session_state['mostrar_formulario']['customize']:
                 "line_color": line_color,
                 "line_width": line_width
             }
+
+elif st.session_state['mostrar_formulario']['save_node']:
+    if st.session_state['nodos'] or st.session_state['aristas']:
+        graph_data = {
+            "nodos": st.session_state['nodos'],
+            "aristas": st.session_state['aristas']
+        }
+        graph_json = json.dumps(graph_data, indent=4)
+        st.download_button(label="Descargar Grafo", data=graph_json, file_name=f"{graph_title}.json")
+    else:
+        st.warning("No hay datos para guardar", icon="⚠")
+
+elif st.session_state['mostrar_formulario']['load_node']:
+    with st.form(key='load_node_form'):
+        uploaded_file = st.file_uploader("Cargar Grafo", type=["json"])
+        submit_load = st.form_submit_button("Cargar Grafo")
+
+        if submit_load and uploaded_file is not None:
+            graph_data = json.load(uploaded_file)
+            st.session_state['nodos'] = graph_data["nodos"]
+            st.session_state['aristas'] = graph_data["aristas"]
 
 # Mostrar nodos
 for nodo in st.session_state['nodos']:
