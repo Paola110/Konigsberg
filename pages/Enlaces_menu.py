@@ -2,8 +2,9 @@
 # | Konigsberg v1.0.0
 # +----------------------------------------------------------------------------+
 # | Authors:
-# |
-# +----------------------------------------------------------------------------+
+# | Alan Torres Ruiz
+# | Paola Montserrat Osorio García
+# |# +----------------------------------------------------------------------------+
 # | First release: November 28th, 2024
 # | Last update.: November 28th, 2024
 # | WhatIs.......: Konigsberg - Main
@@ -50,8 +51,12 @@ st.divider()
 
 st.markdown(
     """
+    ### :green[:material/link:] Link a la pagina principal
+    https://konigsberg.streamlit.app/    
+    
     ### :violet[:material/link:] Github
     https://github.com/Paola110/Konigsberg.git
+
     """
 )
 
