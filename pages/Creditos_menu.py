@@ -56,7 +56,9 @@ st.markdown(
     * Alan Torres Ruiz  
     * Paola Montserrat Osorio García  
 
-    :green[**Interacción con el grafo**] 
+    :green[**Interacción con el grafo**]
+    
+    Creación de estructura base para el desplegado de plano tridimensional con scatter3d Traces de Plotly. Creación, eliminación y edición de nodos y aristas. Menú con deslizadores para manipulación de propiedades (tamaño y color). Íconos para botones.
     * Vanessa Reteguín  
     * Martín Isaí Núñez Villeda  
     ### :blue[:material/account_tree:] Construcción de grafos
