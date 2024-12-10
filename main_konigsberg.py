@@ -2,9 +2,9 @@
 # | Konigsberg v1.0.0
 # +----------------------------------------------------------------------------+
 # | Authors:
-# | Alan Torres      <>
-# | Paola Osorio     <> 
-# | Vanessa Reteguín <vanessa@reteguin.com>
+# | Alan Torres Ruiz
+# | Paola Montserrat Osorio García
+# |
 # +----------------------------------------------------------------------------+
 # | First release: November 28th, 2024
 # | Last update..: December 2nd, 2024
