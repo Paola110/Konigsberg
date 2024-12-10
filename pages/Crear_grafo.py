@@ -63,6 +63,16 @@ else:
     if 'save_node' not in st.session_state['mostrar_formulario']:
         st.session_state['mostrar_formulario']['save_node'] = False
 
+query_params = st.query_params
+
+# Verificamos si la página es 'Crear_grafo' y si el parámetro 'load' está presente
+if query_params.get("load", [None])[0] == "true":
+    # Cambiar el estado del formulario
+    for k in st.session_state['mostrar_formulario']:
+        st.session_state['mostrar_formulario'][k] = False  # Desactivar todos los formularios
+    st.session_state['mostrar_formulario']['load_node'] = True  # Activar el formulario de carga
+    st.experimental_rerun()
+
 fig = pl.Figure()
 fig.update_layout(height=graphGridHeight)
 

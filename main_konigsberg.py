@@ -70,7 +70,9 @@ with c2:
     
 with c3:
     st.image(f"./static/graph_load.png", use_container_width=True)
-    st.link_button("Cargar grafo", "Crear_grafo", use_container_width=True, icon=":material/file_open:", type="secondary") #Boton con interaccion
+    st.link_button("Cargar grafo", "/Crear_grafo?load=true", use_container_width=True, icon=":material/file_upload:", type="primary")
+
+    #st.link_button("Cargar grafo", "Crear_grafo", use_container_width=True, icon=":material/file_open:", type="secondary") #Boton con interaccion
     #Cargar = st.button('Cargar grafo', use_container_width=True, icon=":material/file_open:", type="secondary", key="btn_cargar") #Boton Original
 
 #if Crear:
