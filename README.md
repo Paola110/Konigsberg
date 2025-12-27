@@ -1,75 +1,91 @@
-# 💠 **Konigsberg**
+# 💠 Konigsberg
 
-- [Español](#-konigsberg)
-- [English](#-konigsberg-1)
+Interactive Python application for creating, visualizing, and analyzing graph data structures using graph theory concepts.
 
-Aplicación Streamlit de Python para analizar grafos (teoría de grafos)
+Built with **Streamlit**, this project allows users to explore graphs in 3D directly from the browser, combining visualization with algorithmic analysis.
 
-## 🎯 Objetivo
+---
 
-Crear, editar y analizar grafos en 3D desde el navegador. Permite al usuario:
+## 🎯 Project Objective
 
-- Crear y etiquetar nodos y aristas 3D (colores y texturas)
-- Generar aristas con flechas para grafos dirigidos
-- Calcular ruta más corta y resaltado en grafos ponderados
+To design an interactive environment where users can **build, modify, and analyze graphs** while understanding their structural and algorithmic properties.
 
-### Demostración del proyecto en funcionamiento
+The application allows users to:
 
-(Agregar video/imágenes)
+- Create and label 3D nodes and edges with custom colors and textures  
+- Generate directed and undirected graphs with arrow-based edges  
+- Assign weights to edges  
+- Compute and visually highlight the **shortest path** in weighted graphs  
 
-## 🙌 Logros dentro del proyecto
+---
 
-- Aprendí A. (Dar un ejemplo de cómo aprendimos)
-- Manipulé datos B haciendo X
-- Usé C (establecer ejemplos concretos)
-- Apliqué D
+## 🧠 Core Concepts Applied
 
-## 💡 Inspiración para crear este proyecto
+- Graph theory fundamentals (nodes, edges, directed and weighted graphs)
+- Shortest path algorithms
+- Data structures for graph representation
+- Interactive visualization of abstract structures
+- User-driven manipulation of graph data
 
-¿Por qué estamos haciendo esto? (Escuela, ya lo sé… pero ¿cuál es la motivación para hacerlo bonito y bien?)
+---
 
-## Boceto de GUI
+## 🛠️ Technologies Used
 
-(Bocetos, inspiración, etc.)
+- **Python**
+- **Streamlit** – interactive web interface
+- Graph algorithms implemented in Python
+- 3D visualization libraries (if applicable)
 
-## 👀 Sobre el proyecto
+---
 
-Explicar el proyecto con más detalle (funciones principales, clases, cuestiones técnicas, etc.)
+## 📊 Project Demo 
+> [Konigsberg.streamlimit](https://konigsberg.streamlit.app/)
+---
 
--------------------------------------------------------------------------------------------------------------
+## 🙌 Personal Milestones
 
-# 💠 **Konigsberg** 
+Through this project, I:
 
-Python streamlit app for analyzing graph data structures (graph theory)
+- Implemented graph data structures and traversal logic from scratch  
+- Applied shortest path algorithms to real-time user-generated graphs  
+- Designed an interactive interface to visualize abstract data structures  
+- Connected theoretical concepts from graph theory with practical software implementation  
 
-## 🎯 Objective
+---
 
-Create, edit and analyze 3D graph data structures in browser.  It allows the user to:
+## 💡 Motivation
 
-- 3D nodes and edges creation and labeling (colors and textures)
-- Arrow edges on directed graphs
-- Shortest path calculator and highlighting for weighted graphs
+This project was developed as part of an academic course, but its goal goes beyond a classroom requirement.
 
-### Working project demo
+The motivation was to:
+- Translate **graph theory concepts** into a tangible and interactive tool  
+- Explore how **intelligent systems** can assist users in understanding complex structures  
+- Combine algorithmic reasoning with visual feedback for better comprehension  
 
-(Add video/images)
+---
 
-## 🙌 Project Personal Milestones
+## 🖥️ Application Overview
 
-- Learned A. (Give an example of how we learned)
-- Manipulated B data by doing X
-- Used C (establish concrete examples)
-- Applied D
+The system is structured around:
 
-## 💡 Inspiration for creating this project
+- A graph model that stores nodes, edges, directionality, and weights  
+- User interactions that dynamically update the graph state  
+- Algorithmic modules responsible for path calculation and graph analysis  
+- A visualization layer that reflects structural and algorithmic changes in real time  
 
-Why are we doing this? (School, I know… but what I the motivation for doing it pretty and good?)
+This separation allows the project to remain modular and extensible.
 
-## GUI Sketch
+---
 
-(Sketches, inspiration, etc)
+## 🚀 Future Improvements
 
-## 👀 About the project
+- Support for additional graph algorithms (DFS, BFS, minimum spanning tree)
+- Improved performance for larger graphs
+- Export/import graph configurations
+- Enhanced 3D interaction controls
 
-Explain the project in more detail (main functions, clases, technical issues, etc.)
+---
 
+## 📌 Notes
+
+This project focuses on **conceptual clarity and algorithmic correctness** rather than production-level optimization.
